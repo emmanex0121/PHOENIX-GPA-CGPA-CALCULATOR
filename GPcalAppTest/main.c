@@ -6,7 +6,7 @@ int GradePointUni(int index);
 int TGP(int *arr2, int *arr3, int n);
 char Grade_letter(int index);
 char *Class_Limits();
-int GPAuni(int *arr4, int *arr3, n);
+int GPAuni(int *arr4, int *arr3, int n);
 
 
 int main()
@@ -101,7 +101,7 @@ int TGP(int *arr2, int *arr3, int n)
  *
  * Return: The GPA
  */
-int GPAuni(int *arr4, int *arr3, n)
+int GPAuni(int *arr4, int *arr3, int n)
 {
 	int i, sum_TGP, sum_UNIT, GPA;
 
