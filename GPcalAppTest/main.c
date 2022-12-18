@@ -6,12 +6,14 @@ int GradePointUni(int index);
 int TGP(int *arr2, int *arr3, int n);
 char Grade_letter(int index);
 char *Class_Limits();
-int GPAuni(int *arr4, int *arr3, int n);
+int GPAuni(int *arr4, int *arr2, int n);
 
 
 int main()
 {
 	int num_course, i;
+	int sum_TGP = 0, sum_UNIT = 0;
+	float gpa;
 
 	printf("Enter Number of courses: \n");
 	scanf("%d", &num_course);
@@ -33,13 +35,25 @@ int main()
 	/*arr4[num_course] = TGPE(&arr2[num_course], &arr3, num_course);*/
 	for (i = 0; i < num_course; i++)
 	{
-		printf("Grade Points = %d\n", arr3[i]);
+		printf("Course %d Grade Points = %d\n", i + 1, arr3[i]);
 	}
 
 	for (i = 0; i < num_course; i++)
 	{
-		printf("TGPE = %d\n", arr4[i]);
+		printf("Course %d Total Grade points = %d\n", i + 1, arr4[i]);
 	}
+
+	for (i = 0; i < num_course; i++)
+	{
+		sum_TGP += arr4[i];
+		sum_UNIT += arr2[i];
+	}
+	gpa = sum_TGP / sum_UNIT;
+	printf("Your GPA is: %f\n", gpa);
+
+
+	/*gpa = GPAuni(&arr4, &arr2, num_course);
+	printf("Your GPA is: %d\n", gpa);*/
 
 	/* *arr4 = TGP(&arr2[num_course], &arr3[num_course], num_course);
 	for (i = 0; i < (sizeof(arr4) / sizeof(int)); i++)
@@ -97,19 +111,21 @@ int TGP(int *arr2, int *arr3, int n)
 /**
  * GPAuni - Function to calculate GPA
  * @arr4: parameter for TGP array
- * @arr3: Parameter for Grade Units Array
+ * @arr2: Parameter for Grade Units Array
  *
  * Return: The GPA
  */
-int GPAuni(int *arr4, int *arr3, int n)
+/*
+int GPAuni(int *arr4, int *arr2, int n)
 {
 	int i, sum_TGP, sum_UNIT, GPA;
 
 	for (i = 0; i < n; i++)
 	{
 		sum_TGP += arr4[i];
-		sum_UNIT += arr3[i];
+		sum_UNIT += arr2[i];
 	}
 	GPA = sum_TGP / sum_UNIT;
 	return (GPA);
 }
+*/
