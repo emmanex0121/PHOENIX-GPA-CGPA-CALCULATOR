@@ -3,68 +3,68 @@
 
 
 int GradePointUni(int index);
-int TGP(int *arr2, int *arr3, int n);
 char Grade_letter(int index);
-char *Class_Limits();
-int GPAuni(int *arr4, int *arr2, int n);
+char *Class_Limits(float gpa);
+float GPAuni(int *arr4, int *arr2, int n);
 
-
-int main()
+/**
+ * main - Entry point
+ *
+ * Description: The program to calculate the GPA of a student
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
 {
 	int num_course, i;
-	int sum_TGP = 0, sum_UNIT = 0;
 	float gpa;
 
 	printf("Enter Number of courses: \n");
 	scanf("%d", &num_course);
 
-	int arr1[num_course]; /* To hold the Course Grades */
-	int arr2[num_course]; /* To hold the Course Units */
-	int arr3[num_course]; /* To hold the Course Grade points */
-	int arr4[num_course]; /* To hold the Total grade point (TGP) */
+	int C_SCORE[num_course]; /* To hold the Course SCORES */
+	int C_UNIT[num_course]; /* To hold the Course Units */
+	int COURSE_GP[num_course]; /* To hold the Course Grade points */
+	int COURSE_TGP[num_course]; /* To hold the Total grade point (TGP) */
 
 	for (i = 0; i < num_course; i++)
 	{
 		printf("Course %d Grade and unit: \n", i + 1);
-		scanf("%d %d", &arr1[i], &arr2[i]);
-		arr3[i] = GradePointUni(arr1[i]);
-		arr4[i] = arr2[i] * arr3[i]; /* units * Grade Points */
-
+		scanf("%d %d", &C_SCORE[i], &C_UNIT[i]);
+		COURSE_GP[i] = GradePointUni(C_SCORE[i]);
+		COURSE_TGP[i] = COURSE_GP[i] * C_UNIT[i];
 	}
+	printf("---------------------------|\n");
+	printf("\n");
+	printf("**** PHOENIX G P A CALC ****\n");
 
-	/*arr4[num_course] = TGPE(&arr2[num_course], &arr3, num_course);*/
-	for (i = 0; i < num_course; i++)
-	{
-		printf("Course %d Grade Points = %d\n", i + 1, arr3[i]);
-	}
-
-	for (i = 0; i < num_course; i++)
-	{
-		printf("Course %d Total Grade points = %d\n", i + 1, arr4[i]);
-	}
+	printf("* * * * * ******** * * * * *\n");
+	printf("                           |\n");
 
 	for (i = 0; i < num_course; i++)
 	{
-		sum_TGP += arr4[i];
-		sum_UNIT += arr2[i];
+		printf("Course %d Grade Points = %d  |\n", i + 1, COURSE_GP[i]);
 	}
-	gpa = sum_TGP / sum_UNIT;
-	printf("Your GPA is: %f\n", gpa);
+
+	printf("                           |\n");
+	printf("* * * * * ******** * * * * *\n");
+	printf("                           |\n");
+
+	gpa = GPAuni(COURSE_TGP, C_UNIT, num_course);
+
+	printf("     Your GPA is: %.2f     |\n", gpa);
+	printf("                           |\n");
+	printf("* * * * * ******** * * * * *\n");
+	printf("** ** PHOENIX SAYS BYE ** **\n");
 
 
-	/*gpa = GPAuni(&arr4, &arr2, num_course);
-	printf("Your GPA is: %d\n", gpa);*/
+	return (0);
 
-	/* *arr4 = TGP(&arr2[num_course], &arr3[num_course], num_course);
-	for (i = 0; i < (sizeof(arr4) / sizeof(int)); i++)
-	{
-		printf("TGPE = %d\n", arr4[i]);
-	}*/
 }
 
 
 /**
- * GradePoint - Function that returns the Grade Point of Course Score
+ * GradePointUni - Function that returns the Grade Point of Course Score
  * @index: Value at Course Score current index
  *
  * Return: Grade points for the grades in the array
@@ -88,44 +88,77 @@ int GradePointUni(int index)
 }
 
 
-/**
- * TGP - Function that calculates the Total Grade Points
- * @index: value passed
- */
-/*
-int TGP(int *arr2, int *arr3, int n)
-{
-	int i;
-	int arr[n];
-
-	for (i = 0; i < n; i++)
-	{
-		arr[i] = arr2[i] * arr3[i];
-	}
-	return (*arr);
-}
-*/
-
-
 
 /**
  * GPAuni - Function to calculate GPA
- * @arr4: parameter for TGP array
+ * @arr1: parameter for TGP array
  * @arr2: Parameter for Grade Units Array
+ * @n: Number of courses and array lenght
  *
- * Return: The GPA
+ * Return: The Grade Point Average (GPA)
  */
-/*
-int GPAuni(int *arr4, int *arr2, int n)
+float GPAuni(int *arr1, int *arr2, int n)
 {
-	int i, sum_TGP, sum_UNIT, GPA;
+	int i;
+	float gpa, sum_TGP = 0, sum_UNIT = 0;
 
 	for (i = 0; i < n; i++)
 	{
-		sum_TGP += arr4[i];
+		sum_TGP += arr1[i];
 		sum_UNIT += arr2[i];
 	}
-	GPA = sum_TGP / sum_UNIT;
-	return (GPA);
+
+	gpa = sum_TGP / sum_UNIT;
+	return (gpa);
 }
-*/
+
+/**
+ * Grade_letter - Function that returns the Letter Grade of Course Score
+ * @index: Value at Course Score current index
+ *
+ * Return: Letter Grade for the Score in the array index
+ */
+char Grade_letter(int index)
+{
+	if (index >= 70 && index <= 100)
+		return ('A');
+	else if (index >= 60 && index < 70)
+		return ('B');
+	else if (index >= 50 && index < 60)
+		return ('C');
+	else if (index >= 45 && index < 50)
+		return ('D');
+	else if (index >= 40 && index < 45)
+		return ('E');
+	else if (index >= 0 && index < 40)
+		return ('F');
+	else
+		return ('\0');
+}
+
+/**
+ * Class_Limits - Function that returns the Letter Grade of Course Score
+ * @gpa: Current Grade Points Average
+ *
+ * Return: Class of the degree of the GPA
+ */
+char *Class_Limits(float gpa)
+{
+	if (gpa >= 0.00 && gpa <= 5.00)
+	{
+		if (gpa >= 4.50)
+			return ("1st CLASS");
+		else if (gpa >= 3.50 && gpa < 4.50)
+			return ("2nd CLASS UPPER");
+		else if (gpa >= 2.49 && gpa < 3.50)
+			return ("2nd CLASS LOWER");
+		else if (gpa >= 1.50 && gpa < 2.49)
+			return ("3nd CLASS");
+		else if (gpa >= 1.00 && gpa < 1.50)
+			return ("GOOD STANDING");
+		else
+			return ("ADVISED TO WITHDRAW");
+	}
+	else
+		return ("INVALID GPA");
+}
