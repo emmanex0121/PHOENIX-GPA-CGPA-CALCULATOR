@@ -107,9 +107,9 @@ int GPAuni(int *arr4, int *arr3, int n)
 
 	for (i = 0; i < n; i++)
 	{
-		sum_TG += arr4[i];
+		sum_TGP += arr4[i];
 		sum_UNIT += arr3[i];
 	}
-	GPA = sum_TG / sum_UNIT;
-	return (GPA)
+	GPA = sum_TGP / sum_UNIT;
+	return (GPA);
 }
