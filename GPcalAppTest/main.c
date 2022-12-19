@@ -18,6 +18,7 @@ int main(void)
 {
 	int num_course, i;
 	float gpa;
+	char *cl_degree;
 
 	printf("Enter Number of courses: \n");
 	scanf("%d", &num_course);
@@ -51,8 +52,10 @@ int main(void)
 	printf("                           |\n");
 
 	gpa = GPAuni(COURSE_TGP, C_UNIT, num_course);
+	cl_degree = Class_Limits(gpa);
 
 	printf("     Your GPA is: %.2f     |\n", gpa);
+	printf("     %*s  |\n", -20, cl_degree);
 	printf("                           |\n");
 	printf("* * * * * ******** * * * * *\n");
 	printf("** ** PHOENIX SAYS BYE ** **\n");
